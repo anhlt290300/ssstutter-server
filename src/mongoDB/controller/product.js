@@ -1,13 +1,33 @@
-import { categoryRespository } from "../respositories/index.js";
+import {
+  categoryRespository,
+  productRespository,
+} from "../respositories/index.js";
 import HttpStatusCode from "../../exception/HttpsStatusCode.js";
 
-const createCategory = async ({ title, slug }) => {
+const createProduct = async ({
+  title,
+  slug,
+  categories,
+  cost,
+  tag,
+  discount,
+  mark,
+  description,
+  colors,
+}) => {
   try {
-    let category = await categoryRespository.createCategory({
+    let product = await productRespository.createProduct({
       title,
       slug,
+      categories,
+      cost,
+      tag,
+      discount,
+      mark,
+      description,
+      colors,
     });
-    return category;
+    return product;
   } catch (error) {
     return error;
   }
@@ -38,10 +58,10 @@ const deleteCategory = async ({ id }) => {
   }
 };
 
-const getAllCategory = async () => {
+const getAllproduct = async () => {
   try {
-    let categories = await categoryRespository.getAllCategory();
-    return categories;
+    let products = await productRespository.getAllproduct();
+    return products;
   } catch (error) {
     return error;
   }
@@ -66,8 +86,8 @@ const getCategoryBySlug = async ({ slug }) => {
 };
 
 export default {
-  createCategory,
-  getAllCategory,
+  createProduct,
+  getAllproduct,
   getCategoryById,
   getCategoryBySlug,
   updateCategory,

@@ -1,13 +1,31 @@
 import controller from "../../../mongoDB/controller/index.js";
 
-const addCategory = async (_, args) => {
+const addProduct = async (_, args) => {
   try {
-    const { title, slug } = args.category;
-    const category = await controller.categoryController.createCategory({
+    const {
+      title,
+      tag,
+      slug,
+      categories,
+      cost,
+      discount,
+      mark,
+      description,
+      colors,
+    } = args.product;
+
+    const product = await controller.productController.createProduct({
       title,
       slug,
+      categories,
+      cost,
+      tag,
+      discount,
+      mark,
+      description,
+      colors,
     });
-    return category;
+    return product;
   } catch (error) {
     return error;
   }
@@ -41,7 +59,7 @@ const deleteCategory = async (_, args) => {
 };
 
 export default {
-  addCategory,
+  addProduct,
   updateCategory,
   deleteCategory,
 };

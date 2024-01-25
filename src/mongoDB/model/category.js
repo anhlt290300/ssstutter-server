@@ -7,6 +7,7 @@ export default mongoose.model(
     title: {
       type: String,
       required: true, //NOT NULL
+      unique: true,
       validate: {
         validator: (value) => value.length > 3,
         message: "title of category must be at least 4 characters",
@@ -15,6 +16,7 @@ export default mongoose.model(
     slug: {
       type: String,
       required: true, //NOT NULL
+      unique: true,
       validate: {
         validator: (value) => value.length > 3,
         message: "slug of category must be at least 4 characters",

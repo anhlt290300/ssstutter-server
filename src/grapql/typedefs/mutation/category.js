@@ -10,7 +10,6 @@ const categoryMutation = gql`
   input addCategoryInput {
     title: String!
     slug: String!
-    available: Boolean!
   }
 
   input updateCategoryInput {

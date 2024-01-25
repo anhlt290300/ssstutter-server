@@ -9,9 +9,17 @@ const existingCategoryById = async ({ id }) => {
   return await model.category.findOne({ _id: id }).exec();
 };
 
-const getAllCategory = async () => {
-  const categories = await model.category.find({});
-  return categories;
+const existingProductBySlug = async ({ slug }) => {
+  return await model.product.findOne({ slug: slug }).exec();
+};
+
+const existingProductById = async ({ id }) => {
+  return await model.product.findOne({ _id: id }).exec();
+};
+
+const getAllproduct = async () => {
+  const products = await model.product.find({});
+  return products;
 };
 
 const getCategoryById = async ({ id }) => {
@@ -24,17 +32,34 @@ const getCategoryBySlug = async ({ slug }) => {
   return category;
 };
 
-const createCategory = async ({ title, slug }) => {
+const createProduct = async ({
+  title,
+  slug,
+  categories,
+  cost,
+  tag,
+  discount,
+  mark,
+  description,
+  colors,
+}) => {
   //console.log(available);
-  if (!!(await existingCategoryBySlug({ slug }))) {
-    throw new Exception(Exception.CATEGORY_EXIST);
+  if (!!(await existingProductBySlug({ slug }))) {
+    throw new Exception(Exception.PRODUCT_EXIST);
   }
-  const category = await model.category.create({
+  const product = await model.product.create({
     title,
     slug,
+    categories,
+    cost,
+    tag,
+    discount,
+    mark,
+    description,
+    colors,
     available: false,
   });
-  return category;
+  return product;
 };
 
 const updateCategory = async ({ title, slug, available, id }) => {
@@ -72,8 +97,8 @@ const deleteCategory = async ({ id }) => {
 };
 
 export default {
-  createCategory,
-  getAllCategory,
+  createProduct,
+  getAllproduct,
   getCategoryById,
   getCategoryBySlug,
   updateCategory,

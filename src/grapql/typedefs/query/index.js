@@ -1,5 +1,5 @@
 import categoryQuery from "./category.js";
-
-const query = { categoryQuery };
+import productQuery from "./product.js";
+const query = { categoryQuery, productQuery };
 
 export default query;

@@ -5,11 +5,15 @@ const resolvers = {
     getCategoryById: query.categoryQuery.getCategoryById,
     getCategoryBySlug: query.categoryQuery.getCategoryBySlug,
     getAllCategories: query.categoryQuery.getAllCategories,
+
+    getAllproduct: query.productQuery.getAllproduct,
   },
   Mutation: {
     addCategory: mutation.mutationCategory.addCategory,
     updateCategory: mutation.mutationCategory.updateCategory,
     deleteCategory: mutation.mutationCategory.deleteCategory,
+
+    addProduct: mutation.mutationProduct.addProduct,
   },
 };
 

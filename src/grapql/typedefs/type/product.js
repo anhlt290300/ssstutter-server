@@ -4,20 +4,32 @@ import { categoryType } from "./category.js";
 const productType = gql`
   ${categoryType}
   type image {
-    id: ID!
     image: String!
-  }
-  type images {
-    images: [image!]!
   }
 
   type color {
-    images: images
+    images: [image!]
     mark: String!
     title: String!
   }
   type product {
-    id: ID!
+    _id: ID!
+    title: String!
+    tag: String
+    slug: String!
+    categories: [category]
+    price: String
+    cost: String
+    discount: Float
+    mark: String
+    description: String
+    colors: [color]
+    suggest: [product]
+    available: Boolean
+  }
+
+  type productCard {
+    _id: ID!
     title: String!
     tag: String
     slug: String!
@@ -26,10 +38,7 @@ const productType = gql`
     cost: String!
     discount: Float
     mark: String
-    description: String
-    colors: [color]
-    color_length: Int
-    suggest: [product]
+    colors: Int
     available: Boolean
   }
 `;
