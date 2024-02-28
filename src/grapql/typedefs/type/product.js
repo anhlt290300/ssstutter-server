@@ -8,7 +8,7 @@ const productType = gql`
   }
 
   type color {
-    images: [image!]
+    images: [String]
     mark: String!
     title: String!
   }
@@ -24,12 +24,12 @@ const productType = gql`
     mark: String
     description: String
     colors: [color]
-    suggest: [product]
+    recommend: [productCard]
     available: Boolean
   }
 
   type productCard {
-    _id: ID!
+    id: ID!
     title: String!
     tag: String
     slug: String!
@@ -40,6 +40,12 @@ const productType = gql`
     mark: String
     colors: Int
     available: Boolean
+  }
+
+  type arrProductCard {
+    products: [productCard]!
+    page: Int!
+    pageSize: Int!
   }
 `;
 

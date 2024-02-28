@@ -2,7 +2,6 @@ import {
   categoryRespository,
   productRespository,
 } from "../respositories/index.js";
-import HttpStatusCode from "../../exception/HttpsStatusCode.js";
 
 const createProduct = async ({
   title,
@@ -67,6 +66,46 @@ const getAllproduct = async () => {
   }
 };
 
+const getProduct = async ({ page }) => {
+  try {
+    let products = await productRespository.getProduct({ page });
+    return products;
+  } catch (error) {
+    return error;
+  }
+};
+
+const getProductCards = async ({ page, category }) => {
+  try {
+    let products = await productRespository.getProductCards({ page, category });
+    //console.log(products)
+    return products;
+  } catch (error) {
+    return error;
+  }
+};
+
+const getProductCardsByTag = async ({ page, tag }) => {
+  try {
+    let products = await productRespository.getProductCardsByTag({ page, tag });
+    return products;
+  } catch (error) {
+    return error;
+  }
+};
+
+const getProductCardsPromotion = async ({ page, promotion }) => {
+  try {
+    let products = await productRespository.getProductCardsPromotion({
+      page,
+      promotion,
+    });
+    return products;
+  } catch (error) {
+    return error;
+  }
+};
+
 const getCategoryById = async ({ id }) => {
   try {
     let category = await categoryRespository.getCategoryById({ id });
@@ -76,10 +115,11 @@ const getCategoryById = async ({ id }) => {
   }
 };
 
-const getCategoryBySlug = async ({ slug }) => {
+const getProductBySlug = async ({ slug }) => {
   try {
-    let category = await categoryRespository.getCategoryBySlug({ slug });
-    return category;
+    let product = await productRespository.getProductBySlug({ slug });
+    console.log(product);
+    return product;
   } catch (error) {
     return error;
   }
@@ -89,7 +129,11 @@ export default {
   createProduct,
   getAllproduct,
   getCategoryById,
-  getCategoryBySlug,
+  getProductBySlug,
   updateCategory,
   deleteCategory,
+  getProduct,
+  getProductCards,
+  getProductCardsByTag,
+  getProductCardsPromotion,
 };

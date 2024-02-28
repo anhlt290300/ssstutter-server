@@ -5,7 +5,9 @@ const productQuery = gql`
     getProductById(id: ID!): product
     getProductBySlug(slug: String): product
     getAllproduct: [product]
-    getProductCard: [productCard]
+    getProductCards(page: Int, categoryID: ID): arrProductCard
+    getProductCardsByTag(page: Int, tag: String): arrProductCard
+    getProductCardsPromotion(page: Int, promotion: Boolean): arrProductCard
   }
 `;
 

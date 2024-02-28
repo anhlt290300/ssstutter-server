@@ -1,6 +1,7 @@
 import controller from "../../../mongoDB/controller/index.js";
+import { PrismaClient } from "@prisma/client";
 
-
+const prisma = new PrismaClient();
 const getCategoryById = async (_, args) => {
   try {
     const { id } = args;
@@ -27,7 +28,10 @@ const getCategoryBySlug = async (_, args) => {
 
 const getAllCategories = async () => {
   try {
-    const categories = await controller.categoryController.getAllCategory();
+    // const categories = await controller.categoryController.getAllCategory();
+    // return categories;
+    const categories = await prisma.categories.findMany();
+    //console.log(prisma.category)
     return categories;
   } catch (error) {
     return error;

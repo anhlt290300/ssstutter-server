@@ -2,8 +2,13 @@ import { gql } from "apollo-server-express";
 
 const categoryMutation = gql`
   type Mutation {
-    addCategory(category: addCategoryInput): category
-    updateCategory(category: updateCategoryInput): category
+    addCategory(title: String, slug: String): category
+    updateCategory(
+      id: ID!
+      title: String!
+      slug: String!
+      available: Boolean
+    ): category
     deleteCategory(id: ID!): category
   }
 

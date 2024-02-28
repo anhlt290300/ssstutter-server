@@ -1,5 +1,5 @@
 import controller from "../../../mongoDB/controller/index.js";
-
+import { prisma } from "../../../context.js";
 const addProduct = async (_, args) => {
   try {
     const {

@@ -1,0 +1,77 @@
+datasource db {
+    provider = "mongodb"
+    url      = env("DATABASE_URL")
+}
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+model categories {
+    id        String  @id @default(auto()) @map("_id") @db.ObjectId
+    title     String
+    slug      String
+    available Boolean @default(false)
+}
+
+model products {
+    id          String   @id @default(auto()) @map("_id") @db.ObjectId
+    title       String
+    slug        String
+    tag         String?
+    categories  String[] @db.ObjectId
+    cost        Float
+    discount    Float    @default(0)
+    mark        String
+    description String?
+    colors      color[]
+    avalable    Boolean  @default(true)
+}
+
+type color {
+    mark   String
+    title  String
+    images String[]
+    id     String   @map("_id") @db.ObjectId
+}
+
+model user {
+    id            String    @id @default(auto()) @map("_id") @db.ObjectId
+    name          String?
+    email         String?
+    image         String?
+    emailVerified DateTime?
+
+    role    Role      @default(USER)
+    account account[]
+    session session[]
+}
+
+model account {
+    id                String  @id @default(auto()) @map("_id") @db.ObjectId
+    type              String
+    provider          String
+    providerAccountId String
+    refresh_token     String?
+    access_token      String?
+    token_type        String
+    scope             String?
+    exprires_at       Int?
+    id_token          String?
+    session_state     String?
+    user              user    @relation(fields: [userId], references: [id])
+    userId            String  @db.ObjectId
+}
+
+model session {
+    id           String   @id @default(auto()) @map("_id") @db.ObjectId
+    sessionToken String   @unique
+    user         user     @relation(fields: [userId], references: [id])
+    userId       String   @db.ObjectId
+    expires      DateTime
+}
+
+enum Role {
+    USER
+    ADMIN
+}

@@ -1,7 +1,8 @@
 import express from "express";
 import * as dotenv from "dotenv";
 import { ApolloServer } from "apollo-server-express";
-
+import { privateFields } from "./grapql/middleware/privateFields.js";
+import { createContext } from "./context.js";
 dotenv.config();
 import typeDefs from "./grapql/typedefs/index.js";
 import resolvers from "./grapql/resolve/index.js";
@@ -22,6 +23,11 @@ app.use(cors(corsOptions));
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+  context: ({ req }) => {
+    return {
+      token: req.headers.authorization || "",
+    };
+  },
 });
 await server.start();
 server.applyMiddleware({ app });
@@ -29,7 +35,6 @@ server.applyMiddleware({ app });
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, async () => {
-  await connect();
   console.log(
     `Server running at http://localhost:${PORT}${server.graphqlPath}`
   );

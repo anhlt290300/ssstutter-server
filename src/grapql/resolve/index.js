@@ -7,6 +7,10 @@ const resolvers = {
     getAllCategories: query.categoryQuery.getAllCategories,
 
     getAllproduct: query.productQuery.getAllproduct,
+    getProductCards: query.productQuery.getProductCards,
+    getProductCardsByTag: query.productQuery.getProductCardsByTag,
+    getProductCardsPromotion: query.productQuery.getProductCardsPromotion,
+    getProductBySlug: query.productQuery.getProductBySlug,
   },
   Mutation: {
     addCategory: mutation.mutationCategory.addCategory,
@@ -15,6 +19,9 @@ const resolvers = {
 
     addProduct: mutation.mutationProduct.addProduct,
   },
+  // productCard :{
+  //   getProductCard :
+  // }
 };
 
 export default resolvers;

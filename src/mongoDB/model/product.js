@@ -50,7 +50,7 @@ export default mongoose.model(
       require: false,
     },
     categories: {
-      type: [String],
+      type: [ObjectId],
       require: true,
       validate: {
         validator: (arr) => arr.length > 0,
