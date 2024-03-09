@@ -69,7 +69,6 @@ const getProductBySlug = async (_, args) => {
         })
       );
       rs = { ...rs, recommend: recommend };
-
       return rs;
     } else {
       throw new Exception(Exception.PRODUCT_NOT_EXIST);

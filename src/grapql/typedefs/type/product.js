@@ -13,7 +13,7 @@ const productType = gql`
     title: String!
   }
   type product {
-    _id: ID!
+    id: ID!
     title: String!
     tag: String
     slug: String!
